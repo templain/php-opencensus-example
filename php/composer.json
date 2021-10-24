@@ -10,6 +10,6 @@
     ],
     "require": {
         "opencensus/opencensus": "~0.2",
-        "opencensus/opencensus-exporter-stackdriver": "~0.1"
+        "opencensus/opencensus-exporter-zipkin": "~0.1"
     }
 }

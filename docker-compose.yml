@@ -1,5 +1,9 @@
 version: "3.6"
 services:
+  zipkin:
+    ports:
+      - "9411:9411"
+    image: openzipkin/zipkin
 
   nginx:
     build: nginx/
@@ -12,5 +16,3 @@ services:
     build: php/
     environment:
       GOOGLE_APPLICATION_CREDENTIALS: /key.json
-    volumes:
-      - ./php:/src
