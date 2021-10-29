@@ -14,5 +14,15 @@ services:
 
   php:
     build: php/
+  
+  webapi:
+    build: python/app/
+    # サービス起動後に入力されるコマンドを設定
+    # command: python manage.py runserver 0.0.0.0:8000
+    command: uwsgi --socket :8081 --wsgi-file django_demo/wsgi.py --logto /tmp/uwsgi.log --py-autoreload 1
+    # 環境変数を指定
     environment:
-      GOOGLE_APPLICATION_CREDENTIALS: /key.json
+      # 1ならデバックモード
+      - DEBUG=1
+      # setting.pyに記載されているSECRET_KEYを記入
+      - 'SECRET_KEY=oyux(%m0pa8(fc$$rns&jm$$$$o(nbta04eww2j34z2pwn9p!%e)%'

@@ -1,20 +1,17 @@
-FROM php:7.2-fpm-alpine
+FROM php:7.4-fpm-alpine
 
-RUN apk add --no-cache --virtual=.build-deps zlib-dev autoconf gcc g++ make linux-headers libstdc++ \
+RUN apk add --no-cache --virtual=.build-deps zlib-dev autoconf gcc g++ make linux-headers \
   && pecl install grpc protobuf opencensus-alpha \
   && docker-php-ext-install sysvshm opcache \
   && docker-php-ext-enable grpc protobuf opencensus \
   && apk del .build-deps \
   && apk del *-dev
 
+RUN apk add --no-cache libstdc++
+
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-COPY composer.json /tmp/composer.json
-ENV COMPOSER_ALLOW_SUPERUSER 1
-RUN composer install --no-scripts --no-autoloader -d /tmp
-
 COPY . /src
-WORKDIR /src
-
-RUN mv -n /tmp/vendor ./ \
-  && composer dump-autoload
+WORKDIR /src/app
+ENV COMPOSER_ALLOW_SUPERUSER 1
+RUN composer install 
