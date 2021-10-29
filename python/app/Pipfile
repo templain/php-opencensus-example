@@ -10,6 +10,8 @@ Django = "*"
 uwsgi = "*"
 djangorestframework = "*"
 django-filter = "*"
+opencensus-ext-django = "*"
+opencensus-ext-zipkin = "*"
 
 [requires]
 python_version = "3.7"

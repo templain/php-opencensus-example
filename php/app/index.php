@@ -5,12 +5,18 @@ require __DIR__.'/vendor/autoload.php';
 use OpenCensus\Trace\Exporter\ZipkinExporter;
 use OpenCensus\Trace\Tracer;
 use GuzzleHttp\Client;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Utils;
+use OpenCensus\Trace\Integrations\Guzzle\Middleware;
 
 //$exporter = new OneLineEchoExporter();
 $exporter = new ZipkinExporter('my_app', 'http://zipkin:9411/api/v2/spans');
 Tracer::start($exporter);
 
-$client = new Client();
+$stack = new HandlerStack();
+$stack->setHandler(Utils::chooseHandler());
+$stack->push(new Middleware());
+$client = new Client(['handler' => $stack]);
 
 Tracer::inSpan(['name' => 'outer'], function () use ($client) {
     // some code
