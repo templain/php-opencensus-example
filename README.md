@@ -4,10 +4,9 @@
 
 ```sh
 $ docker-compose up -d
-$ docker-compose run php composer install
-$ curl http://localhost:8080
+$ curl http://localhost:8080/app/
 
-hello
+AUTHORS=太郎,ひろし,花子
 ```
 
 ## 結果をブラウザで見る
