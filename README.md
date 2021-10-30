@@ -1,5 +1,8 @@
 # php-python-opencensus-example
 
+## Abstract
+curl -> nginx(reverse proxy) -> PHP(FPM) -> nginx -> Django(REST API)
+
 ## Usage
 
 ```sh
