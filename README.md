@@ -1,4 +1,4 @@
-# php-opencensus-example
+# php-python-opencensus-example
 
 ## Usage
 
