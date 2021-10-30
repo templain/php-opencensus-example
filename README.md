@@ -1,7 +1,11 @@
 # php-python-opencensus-example
 
 ## Abstract
-curl -> nginx(reverse proxy) -> PHP(FPM) -> nginx -> Django(REST API)
+flow: curl -> nginx(reverse proxy) -> PHP(FPM) -> nginx -> Django(REST API)
+
+propagation format: GCP
+
+distributed tracing system: OpenZipkin
 
 ## Usage
 
